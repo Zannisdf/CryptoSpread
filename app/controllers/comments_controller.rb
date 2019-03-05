@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
+  load_and_authorize_resource
+
   def create
-    @comment = Comment.new(
-      user: current_user,
-      coin_id: params[:coin_id],
-      content: params[:comment][:content]
-    )
+    @comment = Comment.new(comment_params)
+    @comment.user = current_user
+    @comment.coin_id = params[:coin_id]
     if @comment.save
       respond_to :js
     else
@@ -15,5 +15,11 @@ class CommentsController < ApplicationController
       end
       respond_to :html
     end
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:content)
   end
 end

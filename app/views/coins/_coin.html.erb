@@ -4,6 +4,9 @@
     <%= link_to coin.name, coin_path(coin) %>
     <div>
       <%= coin.daily_price_change %>
+      <%= link_to coin_portfolios_path(coin), class: 'btn btn-outline-warning btn-sm' do %>
+        <i class="fas fa-plus"></i> Add to porfolio
+      <% end %>
     </div>
   </div>
 </div>

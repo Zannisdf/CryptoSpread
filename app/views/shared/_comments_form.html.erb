@@ -3,5 +3,9 @@
     <%= f.label :content, 'Leave a comment:' %>
     <%= f.text_area :content, class:'form-control' %>
   </div>
-  <%= f.submit 'Submit', class: 'btn btn-primary btn-sm' %>
+  <% if can? :create, comment %>
+    <%= f.submit 'Submit', class: 'btn btn-primary btn-sm' %>
+  <% else %>
+    <%= link_to 'Log in', new_user_session_path, class: 'btn btn-primary btn-sm' %>
+  <% end %>
 <% end %>
