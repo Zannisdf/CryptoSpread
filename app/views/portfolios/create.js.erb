@@ -1,0 +1,10 @@
+$followBtn = $('#<%= @portfolio.coin_id %> .follow');
+$followBtn.toggleClass('btn-outline-warning');
+$followBtn.toggleClass('btn-warning');
+$followBtn.html(function(){
+  if(<%= @portfolio.follow %>){
+    return "<i class='fas fa-minus'></i>"
+  } else {
+    return "<i class='fas fa-plus'></i>"
+  }
+})
