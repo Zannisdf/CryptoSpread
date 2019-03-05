@@ -4,6 +4,8 @@
 <p>
   <%= @coin.description %>
 </p>
+<%# <% puts @coin.coin_histories.group_by_hour(:created_at).count %> %>
+<%= line_chart hourly_price(@coin), min: nil %>
 
 <table class="table table-hover">
   <thead>
