@@ -4,9 +4,9 @@ module CoinsHelper
   end
 
   def hourly_price(coin)
-    # 
+    #
     # replace group_by_hour with day
-    # 
+    #
     quantities = coin.coin_histories.group_by_hour(:created_at).count
     quantities.map do |date, quantity|
       hourly_data = coin.coin_histories.where(created_at: date...(date + 1.hour))
