@@ -1,0 +1,7 @@
+<%= form_with(model: [coin, comment]) do |f| %>
+  <div class="form-group">
+    <%= f.label :content, 'Leave a comment:' %>
+    <%= f.text_area :content, class:'form-control' %>
+  </div>
+  <%= f.submit 'Submit', class: 'btn btn-primary btn-sm' %>
+<% end %>

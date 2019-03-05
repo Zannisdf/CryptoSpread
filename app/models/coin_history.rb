@@ -18,7 +18,7 @@ class CoinHistory < ApplicationRecord
       CoinHistory.create(
         market: market,
         coin: Coin.find_by(name: coin_name),
-        price: data['last'],
+        price: BigDecimal(data['last']),
         currency: 'usdt'
       )
     end
@@ -39,7 +39,7 @@ class CoinHistory < ApplicationRecord
       CoinHistory.create(
         market: market,
         coin: Coin.find_by(name: coin_name),
-        price: data[coin_symbol.to_s]['last'].to_f,
+        price: BigDecimal(data[coin_symbol.to_s]['last']),
         currency: 'usdt'
       )
     end

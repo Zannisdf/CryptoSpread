@@ -1,0 +1,31 @@
+<h1>
+  <%= @coin.name %>
+</h1>
+<p>
+  <%= @coin.description %>
+</p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Market</th>
+      <th>Current Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @markets.each do |market| %>
+      <tr>
+        <td><%= link_to market.name, market.url %></td>
+        <td><%= market_price(@coin, market) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<%= render 'shared/comments_form', {coin: @coin, comment: @comment} %>
+
+<h3 class="mt-3">Comments:</h3>
+<div class="comments-container mt-2">
+  <%= render @comments %>
+</div>
