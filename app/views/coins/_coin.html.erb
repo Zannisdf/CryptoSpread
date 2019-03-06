@@ -1,9 +1,6 @@
 <div id="<%= coin.id %>" class="card mt-3">
   <div class="card-body d-flex justify-content-between">
-    
-    <%= link_to coin.name, coin_path(coin) %>
     <div>
-      <%= coin.price_change(time_frame) %>      
       <% if can? :create, Portfolio %>
         <% if followed?(coin) %>
           <%= link_to coin_portfolios_path(coin), class: 'btn btn-warning btn-sm follow', data: { remote:true, method: :post } do %>
@@ -15,6 +12,10 @@
           <% end %>
         <% end %>
       <% end %>
+      <%= link_to coin.name, coin_path(coin) %>
+    </div>
+    <div>
+      <%= coin.price_change(time_frame) %>%   
     </div>
   </div>
 </div>

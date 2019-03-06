@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :portfolios, only: :create
   end
 
-  resources :portfolios, only: :index
+  resources :portfolios, only: %i[index update]
 
   root 'coins#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

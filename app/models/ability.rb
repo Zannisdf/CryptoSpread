@@ -9,10 +9,11 @@ class Ability
       can :manage, :all
     elsif user.user?
       can :read, :all
-      can :create, [Comment, Portfolio]
+      can :manage, [Comment, Portfolio], user_id: user.id
       can %i[update destroy], Comment, user_id: user.id
     else
       can :read, :all
+      cannot :read, Portfolio
     end
     #
     # The first argument to `can` is the action you are giving the user
