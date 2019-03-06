@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[:edit update destroy]
+  before_action :set_comment, only: %i[edit update destroy]
   load_and_authorize_resource
 
   def create
@@ -28,6 +28,11 @@ class CommentsController < ApplicationController
     else
       redirect_to coin_path(@comment.coin), alert: 'There has been an error, please try again.'
     end
+  end
+
+  def destroy
+    @comment.destroy
+    render json: { comment_id: @comment.id }
   end
 
   private
