@@ -7,6 +7,9 @@
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
         <li>
+          <%= link_to 'Portfolio', portfolios_path, class: 'nav-link' %>
+        </li>
+        <li>
           <div class="dropdown">
             <a href="#" class="nav-link dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= current_user.name %>

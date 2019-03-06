@@ -1,5 +1,5 @@
 module PortfoliosHelper
-  def followed?(user, coin)
-    Portfolio.find_by(user: user, coin: coin, follow: true)
+  def followed?(coin)
+    Portfolio.find_by(user: current_user, coin: coin, follow: true)
   end
 end

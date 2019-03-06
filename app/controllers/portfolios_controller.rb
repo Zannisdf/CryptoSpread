@@ -1,6 +1,10 @@
 class PortfoliosController < ApplicationController
   load_and_authorize_resource
-  
+
+  def index
+    @portfolios = current_user.portfolios
+  end
+
   def create
     @portfolio = Portfolio.find_or_create_by(
       user: current_user,

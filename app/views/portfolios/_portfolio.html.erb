@@ -1,0 +1,9 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <h3><%= link_to portfolio.coin.name %></h3>
+    <p><%= portfolio.coin.price_change(time_frame(portfolio.updated_at)) %></p>
+  </div>
+  <div class="card-body">
+    <%= line_chart portfolio.coin.daily_price(portfolio.updated_at), min: nil, curve: false %>
+  </div>
+</div>

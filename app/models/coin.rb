@@ -16,14 +16,27 @@ class Coin < ApplicationRecord
     end
   end
 
-  def daily_price_change
-    today = Time.zone.now
-    # yesterday = today - 24.hours
-    yesterday = today - 5.minutes
-    if price(today).nil? || price(yesterday).nil?
-      'No hay información.'
+  def price_change(dates)
+    start_date = dates.first
+    end_date = dates.last
+    if price(start_date).nil? || price(end_date).nil?
+      'No info'
     else
-      (((price(today) - price(yesterday)) / price(today)) * 100).round(2).to_s
+      percent = (((price(end_date) - price(start_date)) / price(end_date)) * 100)
+      percent.round(2).to_s
+    end
+  end
+
+  def daily_price(initial_date = nil)
+    range = initial_date.nil? ? nil : initial_date.beginning_of_day..Time.zone.now
+    quantities = coin_histories.group_by_day(:created_at, range: range).count
+    quantities.map do |date, quantity|
+      daily_data = coin_histories.where(created_at: date...(date + 1.day))
+      if quantity.zero?
+        [date, nil]
+      else
+        [date, (daily_data.pluck(:price).sum / quantity).round(2)]
+      end
     end
   end
 end
