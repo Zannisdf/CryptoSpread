@@ -5,15 +5,16 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new(role: 0)
+    can :read, :all
     if user.moderator?
-      can :manage, :all
+      can :manage, Comment
+      can :manage, Portfolio, user_id: user.id
+      can :update, User
     elsif user.user?
-      can :read, :all
       can :manage, [Comment, Portfolio], user_id: user.id
       can :create, Comment
       can %i[update destroy], Comment, user_id: user.id
     else
-      can :read, :all
       cannot :read, Portfolio
     end
     #
