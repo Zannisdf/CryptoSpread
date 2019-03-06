@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :portfolios, only: %i[index update]
-
+  resources :comments, only: %i[edit update destroy]
   root 'coins#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

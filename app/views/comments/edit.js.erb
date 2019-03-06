@@ -1,0 +1,3 @@
+$('#<%= @comment.id %> .card-body').html('<%= j render 'shared/comments_form', { comment: @comment, coin: @coin } %>');
+$('#<%= @comment.id %> label').hide();
+$('#<%= @comment.id %> .actions').hide();

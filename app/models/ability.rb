@@ -10,6 +10,7 @@ class Ability
     elsif user.user?
       can :read, :all
       can :manage, [Comment, Portfolio], user_id: user.id
+      can :create, Comment
       can %i[update destroy], Comment, user_id: user.id
     else
       can :read, :all

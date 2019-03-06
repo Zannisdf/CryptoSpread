@@ -1,5 +1,10 @@
-<div class="card">
+<div id="<%= comment.id %>" class="card">
   <div class="card-body">
     <p><%= comment.content %></p>
+    <% if can? :update, comment %>
+      <div class="actions">
+        <%= link_to 'Edit', edit_comment_path(comment), class: 'edit-link', data: { remote: true } %>
+      </div>
+    <% end %>
   </div>
 </div>
