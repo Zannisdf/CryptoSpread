@@ -9,7 +9,7 @@
         <%= link_to 'User profile', user_path(comment.user) %>
       <% end %>
       <%= link_to 'Edit', edit_comment_path(comment), data: { remote: true } %>
-      <%= link_to 'Delete', comment_path(comment), class: "delete", name: comment.id %>
+      <%= link_to 'Delete', comment_path(comment), class: "delete", name: comment.id, data: { remote: true, method: :delete} %>
     </div>
   <% end %>
 </div>

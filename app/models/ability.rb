@@ -11,9 +11,10 @@ class Ability
       can :manage, Portfolio, user_id: user.id
       can :update, User
     elsif user.user?
-      can :manage, [Comment, Portfolio], user_id: user.id
+      can :manage, Portfolio, user_id: user.id
       can :create, Comment
       can %i[update destroy], Comment, user_id: user.id
+      cannot :manage, Comment unless user.ban.zero?
     else
       cannot :read, Portfolio
     end

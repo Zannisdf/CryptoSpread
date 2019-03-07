@@ -1,14 +1,14 @@
-<div class="card">
+<div id="<%= user.id %>"class="card">
   <div class="card-body row">
     <div class="user-info col-sm-8 offset-sm-1">
       <p>Name: <%= user.name %></p>
       <p>Email: <%= user.email %></p>
       <p>User: <%= user.role %></p>
-      <p>Ban: <%= user.ban %> days</p>
+      <p>Ban: <span class="ban-number"><%= pluralize(user.ban, 'day') %></span></p>
     </div>
     <div class="user-actions col-sm-2 d-flex justify-content-around align-items-center">
       <%= link_to 'Details', user_path(user), class: 'btn btn-info btn-sm' %>
-      <%= link_to 'Ban user', edit_user_path(user), class: 'btn btn-warning btn-sm'  %>
+      <%= link_to 'Ban user', edit_user_path(user), class: 'btn btn-warning btn-sm', data: { remote: true } %>
     </div>
   </div>
 </div>

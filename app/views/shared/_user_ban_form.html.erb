@@ -1,0 +1,7 @@
+<%= form_with(model: user) do |f| %>
+  <div class="form-group">
+    <%= f.label :ban, 'Number of days' %>
+    <%= f.number_field :ban, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Ban', class: 'btn btn-danger btn-sm' %>
+<% end %>

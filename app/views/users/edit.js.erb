@@ -1,0 +1,3 @@
+$('.modal-title').html('Ban <%= "#{@user.role} #{@user.name}" %>');
+$('.modal-body').html('<%= j render 'shared/user_ban_form', user: @user %>');
+$('.modal').modal('show')

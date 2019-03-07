@@ -25,3 +25,7 @@ every 1.minute do
   runner 'CoinHistory.hitbit_rates', environment: 'development'
   runner 'CoinHistory.zb_rates', environment: 'development'
 end
+
+every 1.day, at: '1:00 am' do
+  runner 'User.update_ban'
+end
