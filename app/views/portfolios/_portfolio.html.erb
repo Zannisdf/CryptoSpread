@@ -4,7 +4,7 @@
       <%= link_to portfolio_path(portfolio), class: 'btn btn-warning btn-sm', data: { remote: true, method: :patch, confirm: 'Do you want to remove the coin from your portfolio?' } do %>
         <i class="fa fa-minus"></i>
       <% end %>
-      <%= link_to portfolio.coin.name %>
+      <%= link_to portfolio.coin.name, coin_path(portfolio.coin) %>
     </div>
     <p>Change since following: <%= portfolio.coin.price_change(time_frame(portfolio.updated_at)) %>%</p>
   </div>
