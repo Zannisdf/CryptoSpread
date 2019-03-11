@@ -1,9 +1,9 @@
 class Coin < ApplicationRecord
-  has_many :coin_histories
+  has_many :coin_histories, dependent: :destroy
   has_many :markets, through: :coin_histories
-  has_many :portfolios
+  has_many :portfolios, dependent: :destroy
   has_many :users, through: :portfolios
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   def price(date)
     prices = coin_histories.where(

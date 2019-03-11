@@ -3,10 +3,35 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+    columns do
+      column do
+        panel 'Coin follow rate' do
+          ul do
+            Coin.all.map do |coin|
+              follow_percentage = coin.portfolios.count * 100 / User.count
+              li "#{coin.name}: #{follow_percentage} %"
+            end
+          end
+        end
+      end
+      column do
+        panel 'Most popular coin' do
+          most_users_following = 0
+          coin_name = ''
+          Coin.all.each do |coin|
+            coin_followers = coin.portfolios.where(follow: true).count
+            if coin_followers > most_users_following
+              most_users_following = coin_followers
+              coin_name = coin.name
+            end
+          end
+          para "#{coin_name} has #{pluralize(most_users_following, 'follower')}."
+        end
+      end
+    end
+    columns do
+      panel 'Coin popularity change over time' do
+        para 'pending'
       end
     end
 
@@ -22,12 +47,12 @@ ActiveAdmin.register_page "Dashboard" do
     #       end
     #     end
     #   end
-
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
+    #
+    # column do
+    #   panel "Info" do
+    #     para "Welcome to ActiveAdmin."
     #   end
+    # end
     # end
   end # content
 end

@@ -19,11 +19,13 @@
 
 # Learn more: http://github.com/javan/whenever
 
-set :environment, 'development'
+# set :environment, 'development'
 
 every 1.minute do
   runner 'CoinHistory.hitbit_rates', environment: 'development'
   runner 'CoinHistory.zb_rates', environment: 'development'
+  runner 'CoinHistory.bitforex_rates', environment: 'development'
+  runner 'CoinHistory.binance_rates', environment: 'development'
 end
 
 every 1.day, at: '1:00 am' do
