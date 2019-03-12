@@ -159,6 +159,7 @@ class CoinHistory < ApplicationRecord
     market = Market.find_by(name: 'Gate.io')
     coin_symbols = %w[BTC ETH XRP EOS LTC XLM TRX ADA XMR IOTA DASH MKR NEO XEM ZEC ONT XTZ WAVES DOGE LINK]
     base_url = 'https://data.gateio.co/api2/1/ticker/'
+    currency = 'USDT'
     coin_symbols.each do |sym|
       pair = "#{sym}_#{currency}".downcase
       response = HTTParty.get(base_url + pair)
@@ -167,7 +168,7 @@ class CoinHistory < ApplicationRecord
         market: market,
         coin: Coin.find_by(sym: sym),
         price: BigDecimal(coin_data['last']),
-        bid: BigDecimal(coin_data['highesBid']),
+        bid: BigDecimal(coin_data['highestBid']),
         ask: BigDecimal(coin_data['lowestAsk']),
         currency: currency
       )
