@@ -38,12 +38,14 @@
 
 </table>
 
-<% if cannot? :manage, Comment and user_signed_in? %>
-  <div class="alert alert-danger" role="alert">
-    You can't leave comments because you have been banned for <%= pluralize(current_user.ban, 'day') %>.
-  </div>
-<% else %>
-  <%= render 'shared/comments_form', {coin: @coin, comment: @comment} %>
+<% if user_signed_in? %>
+  <% if can? :create, Comment %>
+    <%= render 'shared/comments_form', {coin: @coin, comment: @comment} %>
+  <% else %>
+    <div class="alert alert-danger" role="alert">
+      You can't leave comments because you have been banned for <%= pluralize(current_user.ban, 'day') %>.
+    </div>
+  <% end %>
 <% end %>
 
 
