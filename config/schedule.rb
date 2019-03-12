@@ -26,6 +26,11 @@ every 1.minute do
   runner 'CoinHistory.zb_rates', environment: 'development'
   runner 'CoinHistory.bitforex_rates', environment: 'development'
   runner 'CoinHistory.binance_rates', environment: 'development'
+  runner 'CoinHistory.coinbene_rates', environment: 'development'
+  runner 'CoinHistory.bittrex_rates', environment: 'development'
+  runner 'CoinHistory.poloniex_rates', environment: 'development'
+  runner 'CoinHistory.okex_rates', environment: 'development'
+  runner 'CoinHistory.gateio_rates', environment: 'development'
 end
 
 every 1.day, at: '1:00 am' do

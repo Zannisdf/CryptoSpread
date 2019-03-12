@@ -126,6 +126,26 @@ markets = [
   {
     name: 'Binance',
     url: 'https://www.binance.com/'
+  },
+  {
+    name: 'Coinbene',
+    url: 'https://www.coinbene.com/'
+  },
+  {
+    name: 'Bittrex',
+    url: 'https://international.bittrex.com/'
+  },
+  {
+    name: 'Poloniex',
+    url: 'https://poloniex.com/'
+  },
+  {
+    name: 'OKEx',
+    url: 'https://www.okex.com/'
+  },
+  {
+    name: 'Gate.io',
+    url: 'https://gate.io/'
   }
 ]
 

@@ -3,9 +3,9 @@ class CoinHistory < ApplicationRecord
   belongs_to :market
 
   def self.hitbit_rates
-    market = Market.find_by(name: 'Hitbit')
+    market = Market.find_by(name: 'HitBTC')
     base_url = 'https://api.hitbtc.com/api/2/public/ticker/'
-    coin_symbols = %w[BTC ETH XRP EOS LTC SLM TRX ADA XMR IOTA DASH MKR NEO XEM ZEC ONT XTZ DOGE]
+    coin_symbols = %w[BTC ETH EOS LTC TRX ADA XMR IOTA DASH MKR NEO XEM ZEC ONT XTZ DOGE]
     currency = 'USD'
     coin_symbols.each do |sym|
       response = HTTParty.get(base_url + sym + currency)
@@ -74,6 +74,101 @@ class CoinHistory < ApplicationRecord
         price: BigDecimal(coin_data['lastPrice']),
         bid: BigDecimal(coin_data['bidPrice']),
         ask: BigDecimal(coin_data['askPrice']),
+        currency: currency
+      )
+    end
+  end
+
+  def self.coinbene_rates
+    market = Market.find_by(name: 'Coinbene')
+    coin_symbols = %w[BTC ETH XRP EOS LTC TRX NEO]
+    currency = 'USDT'
+    base_url = 'http://api.coinbene.com/v1/market/ticker?symbol='
+    coin_symbols.each do |sym|
+      response = HTTParty.get(base_url + (sym + currency).downcase)
+      coin_data = JSON.parse(response.body)['ticker'].first
+      CoinHistory.create(
+        market: market,
+        coin: Coin.find_by(sym: sym),
+        price: BigDecimal(coin_data['last']),
+        bid: BigDecimal(coin_data['bid']),
+        ask: BigDecimal(coin_data['ask']),
+        currency: currency
+      )
+    end
+  end
+
+  def self.bittrex_rates
+    market = Market.find_by(name: 'Bittrex')
+    coin_symbols = %w[BTC ETH XRP LTC XLM TRX ADA XMR DASH NEO ZEC DOGE]
+    currency = 'USDT'
+    base_url = 'https://api.bittrex.com/api/v1.1/public/getticker?market='
+    coin_symbols.each do |sym|
+      response = HTTParty.get("#{base_url + currency}-#{sym}")
+      coin_data = JSON.parse(response.body)['result']
+      CoinHistory.create(
+        market: market,
+        coin: Coin.find_by(sym: sym),
+        price: coin_data['Last'].to_d,
+        bid: coin_data['Bid'].to_d,
+        ask: coin_data['Ask'].to_d,
+        currency: currency
+      )
+    end
+  end
+
+  def self.poloniex_rates
+    market = Market.find_by(name: 'Poloniex')
+    coin_symbols = %w[BTC ETH XRP EOS LTC XMR DASH ZEC DOGE]
+    currency = 'USDT'
+    response = HTTParty.get('https://poloniex.com/public?command=returnTicker')
+    all_coin_data = JSON.parse(response.body)
+    coin_symbols.each do |sym|
+      coin_data = all_coin_data["#{currency}_#{sym}"]
+      CoinHistory.create(
+        market: market,
+        coin: Coin.find_by(sym: sym),
+        price: BigDecimal(coin_data['last']),
+        bid: BigDecimal(coin_data['highestBid']),
+        ask: BigDecimal(coin_data['lowestAsk']),
+        currency: currency
+      )
+    end
+  end
+
+  def self.okex_rates
+    market = Market.find_by(name: 'OKEx')
+    coin_symbols = %w[BTC ETH XRP EOS LTC XLM TRX ADA XMR IOTA DASH MKR NEO XEM ZEC ONT WAVES LINK]
+    currency = 'USDT'
+    base_url = 'https://www.okex.com/api/spot/v3/instruments/'
+    coin_symbols.each do |sym|
+      response = HTTParty.get("#{base_url + sym}-#{currency}/ticker")
+      coin_data = JSON.parse(response.body)
+      CoinHistory.create(
+        market: market,
+        coin: Coin.find_by(sym: sym),
+        price: BigDecimal(coin_data['last']),
+        bid: BigDecimal(coin_data['bid']),
+        ask: BigDecimal(coin_data['ask']),
+        currency: currency
+      )
+    end
+  end
+
+  def self.gateio_rates
+    market = Market.find_by(name: 'Gate.io')
+    coin_symbols = %w[BTC ETH XRP EOS LTC XLM TRX ADA XMR IOTA DASH MKR NEO XEM ZEC ONT XTZ WAVES DOGE LINK]
+    base_url = 'https://data.gateio.co/api2/1/ticker/'
+    coin_symbols.each do |sym|
+      pair = "#{sym}_#{currency}".downcase
+      response = HTTParty.get(base_url + pair)
+      coin_data = JSON.parse(response.body)
+      CoinHistory.create(
+        market: market,
+        coin: Coin.find_by(sym: sym),
+        price: BigDecimal(coin_data['last']),
+        bid: BigDecimal(coin_data['highesBid']),
+        ask: BigDecimal(coin_data['lowestAsk']),
         currency: currency
       )
     end
