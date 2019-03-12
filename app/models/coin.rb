@@ -23,7 +23,7 @@ class Coin < ApplicationRecord
       'No info'
     else
       percent = (((price(end_date) - price(start_date)) / price(end_date)) * 100)
-      percent.round(2).to_s
+      percent.round(3).to_s
     end
   end
 
@@ -35,8 +35,13 @@ class Coin < ApplicationRecord
       if quantity.zero?
         [date, nil]
       else
-        [date, (daily_data.pluck(:price).sum / quantity).round(2)]
+        [date, (daily_data.pluck(:price).sum / quantity).round(6)]
       end
     end
+  end
+
+  def latest_data(market)
+    current = coin_histories.where(market: market).last
+    [current.price, current.bid, current.ask]
   end
 end

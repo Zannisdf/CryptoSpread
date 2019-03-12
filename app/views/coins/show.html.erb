@@ -1,4 +1,4 @@
-<div id="<%= @coin.id %>">
+<div id="<%= @coin.id %>" class="d-flex justify-content-between align-items-end">
   <h1>
     <% if can? :create, Portfolio %>
       <% if followed?(@coin) %>
@@ -13,10 +13,13 @@
     <% end %>
     <%= @coin.name %>
   </h1>
-  <p>
-    <%= @coin.description %>
-  </p>
+  <h3>
+    <%= @coin.price_change(time_frame) %>% (24 hours)
+  </h3>
 </div>
+<p>
+  <%= @coin.description %>
+</p>
 
 <%= line_chart @coin.daily_price, min: nil, curve: false %>
 
@@ -24,14 +27,18 @@
   <thead>
     <tr>
       <th>Market</th>
-      <th>Current Price</th>
+      <th>Price</th>
+      <th>Bid</th>
+      <th>Ask</th>
     </tr>
   </thead>
   <tbody>
     <% @markets.each do |market| %>
       <tr>
         <td><%= link_to market.name, market.url %></td>
-        <td><%= market_price(@coin, market) %></td>
+        <% @coin.latest_data(market).each do |detail| %>
+          <td><%= detail %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
