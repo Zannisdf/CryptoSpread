@@ -30,20 +30,18 @@
       <th>Price</th>
       <th>Bid</th>
       <th>Ask</th>
-      <th>Volume</th>
       <th>24h high</th>
       <th>24h low</th>
+      <th>Volume</th>
     </tr>
   </thead>
   <tbody>
     <% @markets.each do |market| %>
       <tr>
         <td><%= link_to market.name, market.url %></td>
-        <% @coin.latest_data(market).each do |detail| %>
+        <% latest_data(@coin, market).each do |detail| %>
           <td><%= detail %></td>
         <% end %>
-        <td></td>
-        <td></td>
       </tr>
     <% end %>
   </tbody>

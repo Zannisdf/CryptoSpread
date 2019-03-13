@@ -40,8 +40,17 @@ class Coin < ApplicationRecord
     end
   end
 
-  def latest_data(market)
-    current = coin_histories.where(market: market).last
-    [current.price, current.bid, current.ask, current.volume]
+  def latest_coin_history(market)
+    coin_histories.where(market: market).last
+  end
+
+  def high_low_daily(market)
+    last_day_histories = coin_histories.where(
+      'market_id = ? AND created_at > ?', market, Time.zone.now - 24.hours
+    ).pluck(:price)
+    {
+      high: last_day_histories.max,
+      low: last_day_histories.min
+    }
   end
 end

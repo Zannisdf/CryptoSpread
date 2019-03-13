@@ -110,7 +110,7 @@ class CoinHistory < ApplicationRecord
     base_url = 'https://api.bittrex.com/api/v1.1/public/getmarketsummary?market='
     coin_symbols.each do |sym|
       response = HTTParty.get("#{base_url + currency}-#{sym}")
-      coin_data = JSON.parse(response.body)['result']
+      coin_data = JSON.parse(response.body)['result'].first
       CoinHistory.create(
         market: market,
         coin: Coin.find_by(sym: sym),
