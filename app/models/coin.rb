@@ -42,6 +42,6 @@ class Coin < ApplicationRecord
 
   def latest_data(market)
     current = coin_histories.where(market: market).last
-    [current.price, current.bid, current.ask]
+    [current.price, current.bid, current.ask, current.volume]
   end
 end

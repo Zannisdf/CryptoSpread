@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_11_155927) do
+ActiveRecord::Schema.define(version: 2019_03_13_004250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_03_11_155927) do
     t.datetime "updated_at", null: false
     t.decimal "bid"
     t.decimal "ask"
+    t.decimal "volume"
     t.index ["coin_id"], name: "index_coin_histories_on_coin_id"
     t.index ["market_id"], name: "index_coin_histories_on_market_id"
   end

@@ -16,6 +16,7 @@ class CoinHistory < ApplicationRecord
         price: BigDecimal(data['last']),
         bid: BigDecimal(data['bid']),
         ask: BigDecimal(data['ask']),
+        volume: BigDecimal(data['volumeQuote']),
         currency: currency
       )
     end
@@ -35,6 +36,7 @@ class CoinHistory < ApplicationRecord
         price: BigDecimal(data[sym_pair]['last']),
         bid: BigDecimal(data[sym_pair]['buy']),
         ask: BigDecimal(data[sym_pair]['sell']),
+        volume: BigDecimal(data[sym_pair]['vol']),
         currency: currency
       )
     end
@@ -55,6 +57,7 @@ class CoinHistory < ApplicationRecord
         price: coin_data['last'].to_d,
         bid: coin_data['buy'].to_d,
         ask: coin_data['sell'].to_d,
+        volume: coin_data['vol'].to_d,
         currency: currency
       )
     end
@@ -74,6 +77,7 @@ class CoinHistory < ApplicationRecord
         price: BigDecimal(coin_data['lastPrice']),
         bid: BigDecimal(coin_data['bidPrice']),
         ask: BigDecimal(coin_data['askPrice']),
+        volume: BigDecimal(coin_data['quoteVolume']),
         currency: currency
       )
     end
@@ -93,6 +97,7 @@ class CoinHistory < ApplicationRecord
         price: BigDecimal(coin_data['last']),
         bid: BigDecimal(coin_data['bid']),
         ask: BigDecimal(coin_data['ask']),
+        volume: BigDecimal(coin_data['24hrAmt']),
         currency: currency
       )
     end
@@ -102,7 +107,7 @@ class CoinHistory < ApplicationRecord
     market = Market.find_by(name: 'Bittrex')
     coin_symbols = %w[BTC ETH XRP LTC XLM TRX ADA XMR DASH NEO ZEC DOGE]
     currency = 'USDT'
-    base_url = 'https://api.bittrex.com/api/v1.1/public/getticker?market='
+    base_url = 'https://api.bittrex.com/api/v1.1/public/getmarketsummary?market='
     coin_symbols.each do |sym|
       response = HTTParty.get("#{base_url + currency}-#{sym}")
       coin_data = JSON.parse(response.body)['result']
@@ -112,6 +117,7 @@ class CoinHistory < ApplicationRecord
         price: coin_data['Last'].to_d,
         bid: coin_data['Bid'].to_d,
         ask: coin_data['Ask'].to_d,
+        volume: coin_data['Volume'].to_d,
         currency: currency
       )
     end
@@ -131,6 +137,7 @@ class CoinHistory < ApplicationRecord
         price: BigDecimal(coin_data['last']),
         bid: BigDecimal(coin_data['highestBid']),
         ask: BigDecimal(coin_data['lowestAsk']),
+        volume: BigDecimal(coin_data['baseVolume']),
         currency: currency
       )
     end
@@ -150,6 +157,7 @@ class CoinHistory < ApplicationRecord
         price: BigDecimal(coin_data['last']),
         bid: BigDecimal(coin_data['bid']),
         ask: BigDecimal(coin_data['ask']),
+        volume: BigDecimal(coin_data['quote_volume_24h']),
         currency: currency
       )
     end
@@ -170,6 +178,7 @@ class CoinHistory < ApplicationRecord
         price: BigDecimal(coin_data['last']),
         bid: BigDecimal(coin_data['highestBid']),
         ask: BigDecimal(coin_data['lowestAsk']),
+        volume: BigDecimal(coin_data['quoteVolume']),
         currency: currency
       )
     end
