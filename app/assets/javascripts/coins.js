@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function(){
   });
   $('#coinsMainTable').tablesorter({
     theme: 'metro-dark',
-    sortList: [[1,1]],
+    sortList: [[2,1]],
     widgets: ['zebra']
   })
 });

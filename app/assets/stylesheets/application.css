@@ -14,3 +14,17 @@
  *= require_tree .
  *= require_self
  */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body{
+font-family: 'Roboto', sans-serif;
+}
+
+.tablesorter-metro-dark{
+  font: 14px/18px 'Roboto', sans-serif;
+}
+.tablesorter-metro-dark a{
+  font-weight: 600;
+  color: #333;
+}

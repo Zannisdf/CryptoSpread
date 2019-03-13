@@ -5,7 +5,7 @@ class Coin < ApplicationRecord
   has_many :users, through: :portfolios
   has_many :comments, dependent: :destroy
 
-  def price(date)
+  def price(date = Time.zone.now)
     prices = coin_histories.where(
       created_at: (date - 5.minutes)..date
     ).pluck(:price)

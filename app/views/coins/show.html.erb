@@ -27,12 +27,12 @@
   <thead>
     <tr>
       <th>Market</th>
-      <th>Price</th>
-      <th>Bid</th>
-      <th>Ask</th>
-      <th>24h high</th>
-      <th>24h low</th>
-      <th>Volume</th>
+      <th class="text-right">Price</th>
+      <th class="text-right">Bid</th>
+      <th class="text-right">Ask</th>
+      <th class="text-right">24h high</th>
+      <th class="text-right">24h low</th>
+      <th class="text-right">Volume</th>
     </tr>
   </thead>
   <tbody>
@@ -40,7 +40,7 @@
       <tr>
         <td><%= link_to market.name, market.url %></td>
         <% latest_data(@coin, market).each do |detail| %>
-          <td><%= number_to_currency(detail, precision: detail > 10 ? 2 : 6) %></td>
+          <td class="text-right"><%= number_to_currency(detail, precision: detail > 10 ? 2 : 6) %></td>
         <% end %>
       </tr>
     <% end %>
