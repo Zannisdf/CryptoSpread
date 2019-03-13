@@ -56,6 +56,7 @@ class Coin < ApplicationRecord
 
   def spread(markets)
     prices = markets.map { |market| latest_coin_history(market).price }
+    prices = prices.reject(&:zero?)
     ((prices.max - prices.min) * 100 / prices.min).round(2)
   end
 

@@ -7,4 +7,9 @@ $(document).on('turbolinks:load', function(){
       columns_tfoot: false
     }
   });
+  $('#coinsMainTable').tablesorter({
+    theme: 'metro-dark',
+    sortList: [[1,1]],
+    widgets: ['zebra']
+  })
 });

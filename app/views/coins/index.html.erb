@@ -1,3 +1,14 @@
 <h1>Crypto app</h1>
 
-<%= render @coins %>
+<table id="coinsMainTable" class="table table-hover tablesorter">
+  <thead>
+    <tr>
+      <th>Coin</th>
+      <th>Spread</th>
+      <th>24h change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @coins %>
+  </tbody>
+</table>
