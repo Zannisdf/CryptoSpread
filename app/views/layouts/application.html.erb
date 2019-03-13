@@ -18,10 +18,10 @@
   <body>
     <%= render 'shared/navbar' %>
     <% if notice.present? %>
-      <p class="notice"><%= notice %></p>
+      <%= render 'shared/alert', message: notice %>
     <% end %>
     <% if alert.present? %>
-      <p class="alert"><%= alert %></p>
+      <%= render 'shared/alert', message: alert %>
     <% end %>
     
     <div class="container">
