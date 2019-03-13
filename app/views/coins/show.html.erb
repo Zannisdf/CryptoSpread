@@ -45,7 +45,12 @@
       </tr>
     <% end %>
   </tbody>
-
+  <tfoot>
+    <tr>
+      <td>Spread</td>
+      <td><%= @coin.spread(@markets) %>%</td>
+    </tr>
+  </tfoot>
 </table>
 
 <% if user_signed_in? %>
