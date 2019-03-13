@@ -117,7 +117,7 @@ class CoinHistory < ApplicationRecord
         price: coin_data['Last'].to_d,
         bid: coin_data['Bid'].to_d,
         ask: coin_data['Ask'].to_d,
-        volume: coin_data['Volume'].to_d,
+        volume: coin_data['BaseVolume'].to_d,
         currency: currency
       )
     end
