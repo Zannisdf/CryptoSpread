@@ -9,5 +9,9 @@ $followBtn.html(function(){
   }
 })
 <% action = @portfolio.follow ? 'added to' : 'removed from' %>
-$('body').append('<%= j render 'shared/alert', message: "#{@portfolio.coin.name} #{action} your portfolio." %>')
+$('.alert-box').prepend('<%= j render 'shared/alert', message: "#{@portfolio.coin.name} #{action} your portfolio." %>')
+var scroll = $(window).scrollTop();
+if (scroll > 56){
+  $('#alert').offset({top: scroll})
+}
 removeAlert();

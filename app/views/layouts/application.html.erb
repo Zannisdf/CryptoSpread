@@ -17,12 +17,14 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <% if notice.present? %>
-      <%= render 'shared/alert', message: notice %>
-    <% end %>
-    <% if alert.present? %>
-      <%= render 'shared/alert', message: alert %>
-    <% end %>
+    <div class="alert-box">
+      <% if notice.present? %>
+        <%= render 'shared/alert', message: notice %>
+      <% end %>
+      <% if alert.present? %>
+        <%= render 'shared/alert', message: alert %>
+      <% end %>
+    </div>
     
     <div class="container">
       <%= yield %>

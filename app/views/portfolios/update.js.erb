@@ -1,3 +1,3 @@
 $('#<%= @portfolio.id %>').hide(300);
-$('body').append('<%= j render 'shared/alert', message: "#{@portfolio.coin.name} removed from your portfolio." %>');
+$('.alert-box').prepend('<%= j render 'shared/alert', message: "#{@portfolio.coin.name} removed from your portfolio." %>');
 removeAlert();

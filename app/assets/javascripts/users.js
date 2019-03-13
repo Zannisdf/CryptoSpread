@@ -1,6 +1,6 @@
 function removeAlert() {
   setTimeout(function(){
-    $('#alert').alert('close');
+    $('.alert:last-child').alert('close');
   }, 2000)
 };
 
