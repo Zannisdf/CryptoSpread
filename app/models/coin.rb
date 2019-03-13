@@ -23,7 +23,7 @@ class Coin < ApplicationRecord
       'No info'
     else
       percent = (((price(end_date) - price(start_date)) / price(end_date)) * 100)
-      percent.round(3).to_s
+      percent.round(2).to_s
     end
   end
 
@@ -56,6 +56,14 @@ class Coin < ApplicationRecord
 
   def spread(markets)
     prices = markets.map { |market| latest_coin_history(market).price }
-    ((prices.max - prices.min) * 100 / prices.min).round(3)
+    ((prices.max - prices.min) * 100 / prices.min).round(2)
+  end
+
+  def bid_ask_spread(markets)
+    spreads = markets.map do |market|
+      coin_data = latest_coin_history(market)
+      ((coin_data.ask - coin_data.bid) * 100 / coin_data.bid).round(2)
+    end
+    spreads.max
   end
 end

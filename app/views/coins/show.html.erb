@@ -23,7 +23,7 @@
 
 <%= line_chart @coin.daily_price, min: nil, curve: false %>
 
-<table id="detailedInfoTable" class="table table-hover table-bordered tablesorter">
+<table id="detailedInfoTable" class="table table-hover tablesorter">
   <thead>
     <tr>
       <th>Market</th>
@@ -40,15 +40,16 @@
       <tr>
         <td><%= link_to market.name, market.url %></td>
         <% latest_data(@coin, market).each do |detail| %>
-          <td><%= detail %></td>
+          <td><%= number_to_currency(detail, precision: detail > 10 ? 2 : 6) %></td>
         <% end %>
       </tr>
     <% end %>
   </tbody>
   <tfoot>
     <tr>
-      <td>Spread</td>
-      <td><%= @coin.spread(@markets) %>%</td>
+      <td colspan="2" class="text-center spread-cell">Spread: <%= @coin.spread(@markets) %>%</td>
+      <td colspan="2" class="text-center bid_ask-cell">B/A Spread: <%= @coin.bid_ask_spread(@markets) %>%</td>
+      <td colspan="3" class="blank"></td>
     </tr>
   </tfoot>
 </table>

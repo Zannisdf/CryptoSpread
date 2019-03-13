@@ -1,3 +1,27 @@
 // Place all the styles related to the coins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.tablesorter-metro-dark td.primary, 
+.tablesorter-metro-dark tr.even td.primary,
+.tablesorter-metro-dark tr.odd td.primary{
+  background-color: #ddffcb;
+}
+
+table tfoot {
+  .spread-cell{
+    background-color: #678e52;
+  }
+  .bid_ask-cell{
+    background-color: #63a2ff;
+  }
+  
+  .bid_ask-cell,
+  .spread-cell{
+    color: white;
+    font-weight: 600;
+  }
+  
+  .blank{
+    background-color: white;
+  }
+}
