@@ -167,15 +167,15 @@ markets.each do |market_data|
   )
 end
 
-users = User.all
-coins = Coin.all
+# users = User.all
+# coins = Coin.all
 
-Comment.destroy_all
+# Comment.destroy_all
 
-50.times do |i|
-  Comment.create(
-    user: users.sample,
-    coin: coins.sample,
-    content: "Comentario #{i}, adfasdfasdfasdfasdfasdfasdfasdfasdfasdf"
-  )
-end
+# 50.times do |i|
+#   Comment.create(
+#     user: users.sample,
+#     coin: coins.sample,
+#     content: "Comentario #{i}, adfasdfasdfasdfasdfasdfasdfasdfasdfasdf"
+#   )
+# end

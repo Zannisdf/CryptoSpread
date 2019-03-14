@@ -22,15 +22,15 @@
 # set :environment, 'development'
 
 every 1.minute do
-  runner 'CoinHistory.hitbit_rates', environment: 'development'
-  runner 'CoinHistory.zb_rates', environment: 'development'
-  runner 'CoinHistory.bitforex_rates', environment: 'development'
-  runner 'CoinHistory.binance_rates', environment: 'development'
-  runner 'CoinHistory.coinbene_rates', environment: 'development'
-  runner 'CoinHistory.bittrex_rates', environment: 'development'
-  runner 'CoinHistory.poloniex_rates', environment: 'development'
-  runner 'CoinHistory.okex_rates', environment: 'development'
-  runner 'CoinHistory.gateio_rates', environment: 'development'
+  runner 'CoinHistory.hitbit_rates'
+  runner 'CoinHistory.zb_rates'
+  runner 'CoinHistory.bitforex_rates'
+  runner 'CoinHistory.binance_rates'
+  runner 'CoinHistory.coinbene_rates'
+  runner 'CoinHistory.bittrex_rates'
+  runner 'CoinHistory.poloniex_rates'
+  runner 'CoinHistory.okex_rates'
+  runner 'CoinHistory.gateio_rates'
 end
 
 every 1.day, at: '1:00 am' do
