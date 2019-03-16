@@ -89,7 +89,7 @@ coins = [
     sym: 'ONT'
   },
   {
-    name: 'Texos',
+    name: 'Tezos',
     description: "Developed by ex-Morgan Stanley analyst Arthur Breitman. Tezos (XTZ) is a multi-purpose platform that supports dApps and smart contracts. It aims to combine a self-correcting protocol and on-chain governance to manage network modifications. Tezos is powered by XTZ, which is created through 'baking'. Bakers put up deposits and are rewarded for signing and publishing blocks. Witnesses then validate the blocks. Dishonest bakers lose their XTZ deposits. Tezos uses delegated proof-of-stake (DPoS) and supports Turing complete smart contracts. Tezos is implemented in the OCaml programming language, which is said to offer 'functional, imperative, and object-oriented styles'.",
     sym: 'XTZ'
   },
@@ -116,7 +116,7 @@ markets = [
     url: 'https://www.zb.com/'
   },
   {
-    name: 'Hitbit',
+    name: 'HitBTC',
     url: 'https://hitbtc.com/'
   },
   {
