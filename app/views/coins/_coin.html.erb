@@ -2,15 +2,16 @@
   <td>
     <% if can? :create, Portfolio %>
         <% if followed?(coin) %>
-          <%= link_to coin_portfolios_path(coin), class: 'btn btn-warning btn-sm follow', data: { remote:true, method: :post } do %>
+          <%= link_to coin_portfolios_path(coin), class: 'follow', data: { remote:true, method: :post } do %>
             <i class='fas fa-minus'></i>
           <% end %>
         <% else %>
-          <%= link_to coin_portfolios_path(coin), class: 'btn btn-outline-warning btn-sm follow', data: { remote:true, method: :post } do %>
+          <%= link_to coin_portfolios_path(coin), class: 'follow', data: { remote:true, method: :post } do %>
             <i class="fas fa-plus"></i>
           <% end %>
         <% end %>
       <% end %>
+      <%= image_tag "#{coin.name.downcase}.png" %>
       <%= link_to coin.name, coin_path(coin) %>
   </td>
   <td class="text-right">
