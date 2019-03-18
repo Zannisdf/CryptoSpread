@@ -70,7 +70,7 @@ class Coin < ApplicationRecord
     coin_histories.where('created_at > ?', Time.zone.now - 1.day).group_by_hour(:created_at).count.map do |date|
       date = date.first
       [
-        date.strftime("%I %P %a"),
+        date.to_time.localtime.strftime("%I %P %a"),
         coin_histories.where(created_at: date..date + 1.hour).minimum(:price).to_f,
         coin_histories.where('created_at > ?', date.beginning_of_hour).first.price.to_f,
         coin_histories.where('created_at < ?', date.end_of_hour).last.price.to_f,

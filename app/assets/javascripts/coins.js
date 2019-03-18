@@ -43,6 +43,13 @@ function getData(){
       function drawChart() {
         var data = google.visualization.arrayToDataTable(response, true);
 
+        var formatter = new google.visualization.NumberFormat(
+            {fractionDigits: 5});
+        formatter.format(data, 1);
+        formatter.format(data, 2);
+        formatter.format(data, 3);
+        formatter.format(data, 4);
+
         var options = {
           legend:'none',
           bar: { groupWidth: '100%' },
@@ -50,6 +57,7 @@ function getData(){
             risingColor: {stroke: '#678e52', fill: '#678e52'},
             fallingColor: {stroke: '#F44336'},
           },
+          
           colors: ['#333']
         };
 
