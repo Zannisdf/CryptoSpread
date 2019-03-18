@@ -6,14 +6,10 @@ class Coin < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   def price(date = Time.zone.now)
-    prices = coin_histories.where(
-      created_at: (date - 5.minutes)..date
-    ).pluck(:price)
-    if prices.count.zero?
-      nil
-    else
-      prices.sum / prices.count
-    end
+    latest_coin_history = coin_histories.where(
+      'created_at < ?', date
+    ).last
+    latest_coin_history.present? ? latest_coin_history.price : nil
   end
 
   def price_change(dates)
@@ -29,13 +25,12 @@ class Coin < ApplicationRecord
 
   def daily_price(initial_date = nil)
     range = initial_date.nil? ? nil : initial_date.beginning_of_day..Time.zone.now
-    quantities = coin_histories.group_by_day(:created_at, range: range).count
-    quantities.map do |date, quantity|
-      daily_data = coin_histories.where(created_at: date...(date + 1.day))
-      if quantity.zero?
+    prices = coin_histories.group_by_day(:created_at, range: range).average(:price)
+    prices.map do |date, price|
+      if price.zero?
         [date, nil]
       else
-        [date, (daily_data.pluck(:price).sum / quantity).round(6)]
+        [date, price.round(6)]
       end
     end
   end
@@ -54,8 +49,11 @@ class Coin < ApplicationRecord
     }
   end
 
-  def spread(markets)
-    prices = markets.map { |market| latest_coin_history(market).price }
+  def spread
+    latest_coin_histories = coin_histories.group(:market).maximum(:id).values
+    prices = latest_coin_histories.map do |id|
+      CoinHistory.find(id).price
+    end
     prices = prices.reject(&:zero?)
     ((prices.max - prices.min) * 100 / prices.min).round(2)
   end
