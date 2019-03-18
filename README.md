@@ -1,24 +1,33 @@
-# README
+#Crypto spread
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+http://www.cryptospread.net
 
-Things you may want to cover:
+RoR webapp for tracking cryptocurrency data (price, spread, volume) across markets. It fetches data directly from each market into the database.
 
-* Ruby version
+You can fork the app to contribute or clone it if you'd like. To get the app running, follow these steps:
 
-* System dependencies
+1. Create your database.
 
-* Configuration
+    rails db:create
 
-* Database creation
+2. Run migrations.
 
-* Database initialization
+    rails db:migrate
 
-* How to run the test suite
+3. Run seed.
 
-* Services (job queues, cache servers, search engines, etc.)
+    rails db:seed
 
-* Deployment instructions
+This will create the coins and markets supported by the app, however you need to update your crontab in order to start fetching data:
 
-* ...
+4. Update Crontab
+
+    whenever --update-crontab
+
+5. Check your crontab
+
+    crontab -l
+
+You should see a runner job for each market plus one for `update_ban`.
+
+That's it!
