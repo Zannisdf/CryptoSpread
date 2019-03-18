@@ -29,11 +29,6 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
-    columns do
-      panel 'Coin popularity change over time' do
-        para 'pending'
-      end
-    end
 
     # Here is an example of a simple dashboard with columns and panels.
     #
