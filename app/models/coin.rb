@@ -65,4 +65,17 @@ class Coin < ApplicationRecord
     end
     spreads.max
   end
+
+  def chart_data
+    coin_histories.where('created_at > ?', Time.zone.now - 1.day).group_by_hour(:created_at).count.map do |date|
+      date = date.first
+      [
+        date.to_s,
+        coin_histories.where(created_at: date..date + 1.hour).minimum(:price).to_f,
+        coin_histories.where('created_at > ?', date.beginning_of_hour).first.price.to_f,
+        coin_histories.where('created_at < ?', date.end_of_hour).last.price.to_f,
+        coin_histories.where(created_at: date..date + 1.hour).maximum(:price).to_f
+      ]
+    end
+  end
 end

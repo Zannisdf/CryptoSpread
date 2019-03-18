@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :coins, only: %i[index show] do
     resources :comments, only: :create
     resources :portfolios, only: :create
+    get 'chart_data', to: 'coins#chart_data', on: :collection
   end
   resources :portfolios, only: %i[index update]
   resources :comments, only: %i[edit update destroy]

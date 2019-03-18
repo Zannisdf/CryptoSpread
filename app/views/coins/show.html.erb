@@ -28,7 +28,12 @@
 <h4 class="mb-3">
   Historic price
 </h4>
-<%= line_chart @coin.daily_price, min: nil, curve: false %>
+
+<div id="chart_div">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
 
 <div class="table-container">
     <h3>Detail by market</h3>

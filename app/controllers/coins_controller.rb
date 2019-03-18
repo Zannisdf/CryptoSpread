@@ -9,4 +9,9 @@ class CoinsController < ApplicationController
     @comment = Comment.new
     @comments = @coin.comments.order('created_at DESC')
   end
+
+  def chart_data
+    @coin = Coin.find(params[:id])
+    render json: @coin.chart_data
+  end
 end

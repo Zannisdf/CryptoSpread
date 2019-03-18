@@ -14,6 +14,10 @@ $(document).on('turbolinks:load', function(){
   })
 
   checkPrice($('.price'));
+
+  if($('#chart_div').length === 1){
+    getData();
+  }
 });
 
 function checkPrice(prices){
@@ -25,4 +29,34 @@ function checkPrice(prices){
       $(this).addClass('negative');
     }
   })
+}
+
+function getData(){
+  $.ajax({
+    type: "get",
+    url: "/coins/chart_data",
+    data: { id: parseInt(window.location.href.slice(window.location.href.lastIndexOf('/')+1)) },
+    success: function (response) {
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(response, true);
+
+        var options = {
+          legend:'none',
+          bar: { groupWidth: '100%' },
+          candlestick: {
+            risingColor: {stroke: '#678e52', fill: '#678e52'},
+            fallingColor: {stroke: '#F44336'},
+          },
+          colors: ['#333']
+        };
+
+        var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    }
+  });
 }

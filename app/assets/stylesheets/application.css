@@ -96,3 +96,11 @@ form{
 .form-container .btn{
   white-space: normal;
 }
+
+#chart_div{
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
