@@ -16,11 +16,13 @@ $(document).on('turbolinks:load', function(){
   checkPrice($('.price'));
 });
 
-function checkPrice(priceObj){
-  price = priceObj.text().split('').slice(0,priceObj.text().indexOf('%')).join('');
-  if(price > 0){
-    priceObj.addClass('positive');
-  } else if(price < 0){
-    priceObj.addClass('negative');
-  }
+function checkPrice(prices){
+  prices.each(function(){
+    price = $(this).text().split('').slice(0,$(this).text().indexOf('%')).join('');
+    if(price > 0){
+      $(this).addClass('positive');
+    } else if(price < 0){
+      $(this).addClass('negative');
+    }
+  })
 }
