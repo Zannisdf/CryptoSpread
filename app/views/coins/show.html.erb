@@ -22,10 +22,12 @@
     </h3>
   </div>
 </div>
-<p>
+<p class="mb-5">
   <%= @coin.description %>
 </p>
-
+<h4 class="mb-3">
+  Historic price
+</h4>
 <%= line_chart @coin.daily_price, min: nil, curve: false %>
 
 <div class="table-container">
@@ -47,7 +49,13 @@
           <tr>
             <td><%= link_to market.name, market.url %></td>
             <% latest_data(@coin, market).each do |detail| %>
-              <td class="text-right"><%= detail %></td>
+              <td class="text-right">
+                <% if detail.present? %>
+                  <%= number_to_currency(detail, precision: (detail > 10 ? 2 : 6)) %>
+                <% else %>
+                  No info
+                <% end %>
+              </td>
             <% end %>
           </tr>
         <% end %>
