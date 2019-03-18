@@ -5,3 +5,39 @@
   border-radius: 0;
   margin: 0 1rem 0 .5rem;
 }
+
+.portfolio-container{
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.portfolio{
+  margin-bottom: 1rem;
+}
+
+.portfolio-remove:hover{
+  text-decoration: none;
+  color: #333;
+}
+
+.portfolio-container {
+  .portfolio{
+    .card-header{
+    color: white;
+    background-color: #333;
+    border-radius: 0;
+    }
+  }
+
+  a{
+    color: white;
+    margin: 0;
+  }
+
+  .portfolio-remove{
+    margin: 0 1rem 0 .5rem;
+  }
+}
+

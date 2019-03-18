@@ -20,6 +20,13 @@
 body{
 font-family: 'Roboto', sans-serif;
 }
+a{
+  color: #333;
+}
+
+form{
+  margin-bottom: 2rem;
+}
 
 .tablesorter-metro-dark{
   font: 14px/18px 'Roboto', sans-serif;
@@ -27,4 +34,47 @@ font-family: 'Roboto', sans-serif;
 .tablesorter-metro-dark a{
   font-weight: 600;
   color: #333;
+}
+
+.form-control,
+.card,
+.btn{
+  border-radius: 0;
+}
+
+.nav-color{
+  background-color: #333;
+}
+
+.alert-box{
+  z-index: 999999;
+  position: fixed;
+  top: 56px;
+  right: 0;
+}
+
+.alert{
+  border-radius: 0;
+}
+
+.table-container{
+  margin: 3rem 0;
+}
+
+.btn-primary{
+  background-color: #333;
+  border-color: #333;
+}
+
+.card a{
+  margin-left: 1rem;
+}
+
+.header{
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.modal-content{
+  border-radius: 0;
 }

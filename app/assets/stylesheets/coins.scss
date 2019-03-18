@@ -26,17 +26,16 @@ table tfoot {
   }
 }
 
-.nav-color{
-  background-color: #333;
+
+.comment-section{
+  background-color: #ddd;
+  padding: 1rem;
 }
 
-.alert-box{
-  z-index: 999999;
-  position: fixed;
-  top: 56px;
-  right: 0;
+.positive{
+  color: #678e52;
 }
 
-.alert{
-  border-radius: 0;
+.negative{
+  color: #d14;
 }

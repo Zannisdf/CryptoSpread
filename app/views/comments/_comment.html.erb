@@ -1,7 +1,7 @@
 <div id="<%= comment.id %>" class="card">
   <div class="card-body">
     <p><%= comment.content %></p>
-    <footer class="blockquote-footer text-right"><%= comment.user.name %></footer>
+    <footer class="blockquote-footer text-right"><%= comment.user.name %>, <%= time_ago_in_words(comment.created_at) %> ago</footer>
   </div>
   <% if can? :update, comment %>
     <div class="card-footer actions text-right">

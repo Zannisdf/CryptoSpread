@@ -14,13 +14,13 @@
       <%= image_tag "#{coin.name.downcase}.png" %>
       <%= link_to coin.name, coin_path(coin) %>
   </td>
-  <td class="text-right">
+  <td class="text-right align-middle">
     <%= number_to_currency(coin.price, precision: 3) %>
   </td>
-  <td class="text-right">
+  <td class="text-right align-middle">
     <%= coin.spread(coin.markets.uniq) %>%
   </td>
-  <td class="text-right">
+  <td class="price text-right align-middle">
     <%= coin.price_change(time_frame) %>%
   </td>
 </tr>

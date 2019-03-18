@@ -1,1 +1,10 @@
-<%= render @portfolios %>
+<div class="portfolio-container">
+  <% if @portfolios.present? %>
+    <div class="header">
+      <h1>My coins</h1>
+    </div>
+    <%= render @portfolios %>
+  <% else %>
+    <h3>Oops! There's nothing here. Try adding a coin to your portfolio to start tracking it!</h3>
+  <% end %>
+</div>
