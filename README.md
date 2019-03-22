@@ -2,6 +2,8 @@
 
 http://www.cryptospread.net
 
+https://youtu.be/0VZiIIKEWaY
+
 RoR webapp for tracking cryptocurrency data (price, spread, volume) across markets. It fetches data directly from each market into the database.
 
 You can fork the app to contribute or clone it if you'd like. To get the app running, follow these steps:
